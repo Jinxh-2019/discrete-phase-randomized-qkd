@@ -1,0 +1,32 @@
+pdark: 1.0e-8
+ηd: 0.3
+Lgt: 0
+em: 0.03
+η: 0.3
+N: 8
+ξ: 0.21
+Ntot: 1.0e+14
+logNtot: 14
+ε0: 1.0e-10
+ε1: 1.0e-10
+ε2: 1.0e-20
+εcor: 1.0e-10
+εPA: 1.65e-10
+f: 1.1
+Q: 0.005
+mode: "CPFK"
+number_of_states: 4
+number_of_vector: 4
+cpstates: 8
+modes:
+#  - "CPFK"
+ - "CP_Ma"
+#  - "DP"
+
+number_of_Ntots: 4
+logNtots:
+ - 20
+
+lemmas: 
+ - 'lemma1'
+#  - 'new_lemma'

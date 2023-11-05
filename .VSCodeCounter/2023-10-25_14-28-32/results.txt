@@ -1,0 +1,75 @@
+Date : 2023-10-25 14:28:32
+Directory : c:\Users\Sherl King\Desktop\FKBB84_新引理
+Total : 42 files,  2993 codes, 171 comments, 287 blanks, all 3451 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |         27 |      1,710 |        160 |        269 |      2,139 |
+| Database |         10 |      1,129 |          0 |          7 |      1,136 |
+| YAML     |          5 |        154 |         11 |         11 |        176 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                            |         42 |      2,993 |        171 |        287 |      3,451 |
+| . (Files)                                                                    |          2 |          2 |          0 |          1 |          3 |
+| codes                                                                        |         24 |      1,708 |        160 |        267 |      2,135 |
+| codes (Files)                                                                |          4 |         44 |          9 |          7 |         60 |
+| codes\runs                                                                   |          7 |        261 |         10 |         45 |        316 |
+| codes\utils                                                                  |         13 |      1,403 |        141 |        215 |      1,759 |
+| conf                                                                         |          6 |        154 |         11 |         12 |        177 |
+| databases                                                                    |         10 |      1,129 |          0 |          7 |      1,136 |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                     | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\__init__.py                           | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\__init__.py                     | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\main.py                         | Python   |         22 |          2 |          2 |         26 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\main_debug_vsrun.py             | Python   |         11 |          4 |          2 |         17 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\main_graph_lem1.py              | Python   |         11 |          3 |          2 |         16 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\__init__.py                | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\graph.py                   | Python   |         46 |          1 |          8 |         55 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\graph_lem1.py              | Python   |         38 |          1 |          8 |         47 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\optimizer.py               | Python   |         39 |          0 |          5 |         44 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\simulation.py              | Python   |         78 |          2 |         10 |         90 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\sql_exe.py                 | Python   |         46 |          0 |         11 |         57 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\runs\startpoint.py              | Python   |         14 |          6 |          2 |         22 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\Edgeworth_expansion.py    | Python   |         21 |         10 |         13 |         44 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\__init__.py               | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\calculated_percentiles.py | Python   |         12 |          1 |          1 |         14 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\keyrate copy.py           | Python   |        499 |         23 |         66 |        588 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\keyrate.py                | Python   |        499 |         18 |         66 |        583 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\keyrate_CP copy.py        | Python   |         45 |          4 |          6 |         55 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\keyrate_CP.py             | Python   |         51 |          3 |         11 |         65 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\lemma1.py                 | Python   |        121 |         65 |         30 |        216 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\optimize.py               | Python   |         62 |          2 |          9 |         73 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\probabilities.py          | Python   |          8 |          0 |          0 |          8 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\progress_bar.py           | Python   |          8 |          0 |          1 |          9 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\response_rate.py          | Python   |         68 |         15 |         11 |         94 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\codes\utils\sampling.py               | Python   |          9 |          0 |          0 |          9 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\__init__.py                      | Python   |          0 |          0 |          1 |          1 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\config1.yaml                     | YAML     |         30 |          0 |          2 |         32 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\config1_1.yaml                   | YAML     |         30 |          0 |          2 |         32 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\config2.yaml                     | YAML     |         30 |          0 |          2 |         32 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\config_lemma_test.yaml           | YAML     |         33 |         11 |          3 |         47 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\conf\config_new.yaml                  | YAML     |         31 |          0 |          2 |         33 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config1.db                  | Database |        166 |          0 |          0 |        166 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config2.db                  | Database |        219 |          0 |          0 |        219 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config3.db                  | Database |         21 |          0 |          0 |         21 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config4.db                  | Database |         21 |          0 |          0 |         21 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config5.db                  | Database |         20 |          0 |          0 |         20 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config6.db                  | Database |         21 |          0 |          0 |         21 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config7.db                  | Database |         22 |          0 |          0 |         22 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config_lemma_test.db        | Database |        160 |          0 |          2 |        162 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config_new.db               | Database |        250 |          0 |          3 |        253 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\databases\config_new_bk.db            | Database |        229 |          0 |          2 |        231 |
+| c:\Users\Sherl King\Desktop\FKBB84_新引理\root.py                               | Python   |          2 |          0 |          0 |          2 |
+| Total                                                                        |          |      2,993 |        171 |        287 |      3,451 |
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -1,0 +1,46 @@
+pdark: 1.0e-8
+ηd: 0.3
+Lgt: 0
+em: 0.03
+η: 0.3
+N: 16
+ξ: 0.21
+Ntot: 1.0e+14
+logNtot: 14
+ε0: 1.0e-10
+ε1: 1.0e-10
+ε2: 1.0e-10
+εμ: 1.0e-10
+εcor: 1.0e-10
+εPA: 1.65e-10
+ε0_A1: 1.0e-20
+ε1_A1: 1.0e-10
+ε2_A1: 1.0e-20
+εcor_A1: 1.0e-20
+εPA_A1: 1.65e-20
+f: 1.1
+mode: "DP"
+number_of_states: 4
+number_of_vector: 4
+cpstates: 8
+modes:
+ - "DP"
+#  - "CP_Ma"
+#  - "DP_Cao"
+
+number_of_Ntots: 1
+logNtots:
+#  - 12
+#  - 13
+ - 14
+#  - 20
+
+lemmas: 
+#  - 'lemmaA1' # 王瑞强师兄文章里用的方法
+#  - 'new_lemma' # 我的新方法
+#  - 'lemmaA1_without_the_first_term' # 师兄文章去掉第一项
+#  - 'lemmaA1_without_the_second_term' # 师兄文章去掉第二项
+#  - 'lemmaA1_without_the_third_term' # 师兄文章去掉第三项
+ - 'lemma_shan1' # 单阳光方法1
+ - 'lemma_shan2' # 单阳光方法2
+#  - 'F_test' # 保真度全为1时，对王瑞强文章方法的测试
