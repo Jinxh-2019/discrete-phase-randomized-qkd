@@ -52,7 +52,7 @@ def Δ(P1, P2, F, n1, n2, kwargs):
         return Δ_lemmaA1_2(P1, P2, F, n1, n2, kwargs)
     elif lemma == 'lemmaA1_without_the_third_term':
         return Δ_lemmaA1_3(P1, P2, F, n1, n2, kwargs)
-    elif lemma == 'lemma_Shan':
+    elif lemma == 'lemma_shan':
         return Δ1emma_shan(P1, P2, F, n1, n2, kwargs)
     elif lemma == 'lemma_shan2':
         return Δ1emma_shan2(P1, P2, F, n1, n2, kwargs)

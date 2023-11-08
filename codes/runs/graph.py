@@ -43,6 +43,7 @@ def output_graphs(kwargs):
     table_names = cur.fetchall()
     for wrapped_table_name in table_names:
         table_name = wrapped_table_name[0]
+        if table_name in {}: continue
         if table_name in discards: discard = discards[table_name]
         else: discard = {}
         draw_single_line(
