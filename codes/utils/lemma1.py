@@ -22,18 +22,18 @@ def δ_1(n, p, e):
     return ppf*σ
 
 
-def N1(P, kwargs):
+def N1(P,ε1, kwargs):
     Ntot = kwargs['Ntot']
-    ε1 = kwargs['ε1']
-    d = δ(Ntot, P, ε1)
+    # ε1 = kwargs['ε1']
+    d = δ_1(Ntot, P, ε1)
     N1 = Ntot*P + d
     return N1
 
 
-def N2(P, kwargs):
+def N2(P,ε1, kwargs):
     Ntot = kwargs['Ntot']
-    ε1 = kwargs['ε1']
-    d = δ(Ntot, P, ε1)
+    # ε1 = kwargs['ε1']
+    d = δ_1(Ntot, P, ε1)
     N2 = Ntot*P - d
     return max(N2, 0)
 
@@ -70,15 +70,16 @@ def Δ_new(P1, P2, F, kwargs):
 
 
 def Δ_lemmaA1(P1, P2, F, n1, n2, kwargs):
-    _N1 = N1(P2, kwargs)
-    _N2 = N2(P2, kwargs)
+    
     ε0 = kwargs['ε0_A1']
     ε1 = kwargs['ε1_A1']
     ε2 = kwargs['ε2_A1']
+    _N1 = N1(P2,ε1, kwargs)
+    _N2 = N2(P2,ε1, kwargs)
     if F > 1:
         F = 1
-    Δ = _N1*sqrt(1-F*F) + 2*δ(_N1, (1+sqrt(1-F*F))/2, ε0) - \
-        2*δ(_N2-n1-n2, 1/2, ε1) + δ(n1, P2/P1, ε2)
+    Δ = _N1*sqrt(1-F*F) + 2*δ_1(_N1, (1+sqrt(1-F*F))/2, ε0) - \
+        2*δ_1(_N2-n1-n2, 1/2, ε1) + δ_1(n1, P2/P1, ε2)
     #Δ = N1*sqrt(1-F*F)
     return Δ
 
@@ -97,8 +98,8 @@ def Δ_lemmaA1_1(P1, P2, F, n1, n2, kwargs):
 
 
 def Δ_lemmaA1_2(P1, P2, F, n1, n2, kwargs):
-    _N1 = N1(P2, kwargs)
-    _N2 = N2(P2, kwargs)
+    _N1 = N1(P2,ε1, kwargs)
+    _N2 = N2(P2,ε1, kwargs)
     ε0 = kwargs['ε0_A1']
     ε1 = kwargs['ε1_A1']
     ε2 = kwargs['ε2_A1']
@@ -109,8 +110,8 @@ def Δ_lemmaA1_2(P1, P2, F, n1, n2, kwargs):
 
 
 def Δ_lemmaA1_3(P1, P2, F, n1, n2, kwargs):
-    _N1 = N1(P2, kwargs)
-    _N2 = N2(P2, kwargs)
+    _N1 = N1(P2,ε1, kwargs)
+    _N2 = N2(P2,ε1, kwargs)
     ε0 = kwargs['ε0_A1']
     ε1 = kwargs['ε1_A1']
     ε2 = kwargs['ε2_A1']
@@ -138,11 +139,11 @@ def Δ1emma_shan(P1, P2, F, n1, n2, kwargs):
     ε0 = kwargs['ε0']
     ε1 = kwargs['ε1']
     ε2 = kwargs['ε2']
-    _N1 = N1(P2, kwargs)
-    _N2 = N2(P2, kwargs)
+    _N1 = N1(P2,ε1, kwargs)
+    _N2 = N2(P2,ε1, kwargs)
     if F > 1:
         F = 1
-    Δ = Ntot*P2*sqrt(1-F*F)/2 + Ntot*P2-_N2 + δ(P2/P1,n1,ε2)
+    Δ = Ntot*P2*sqrt(1-F*F)/2 + Ntot*P2-_N2 + δ_1(n1,P2/P1,ε2)
     
     #Δ = N1*sqrt(1-F*F)
     return Δ

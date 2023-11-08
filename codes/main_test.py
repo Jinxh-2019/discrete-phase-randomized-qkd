@@ -12,11 +12,13 @@ if __name__ == '__main__':
     conf = 'config_main'
     args = OmegaConf.load('./conf/%s.yaml'%conf)
     args['conf'] = conf
-    args['mode'] = 'CP_Ma'
+    args['mode'] = 'DP'
+    args['lemma'] = 'lemmaA1'
     # output_graphs(args)
     # simulator(True, args)
     x = [0.660487544453102, 1e-05, 0.32833826346592443, 0.8941410211552083, 0.6761783356789675]
 
     # keyrate(x,0,args)
     # x =  [4.076347489223586e-06, 2.9444750131335518e-05, 0.3079141225269898, 0.998700379564296, 0.0008470767214430186]
-    keyrate(x,0,args)
+    p = keyrate(x,40,args)
+    print(p)
