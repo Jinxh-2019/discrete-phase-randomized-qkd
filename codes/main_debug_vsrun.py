@@ -8,7 +8,7 @@ from codes.runs.simulation import simulator
 from codes.runs.graph import output_graphs
 # from root import ROOT_PATH
 if __name__ == '__main__':
-    conf = 'config_CPFKvsDP'
+    conf = 'config_main'
     args = OmegaConf.load('./conf/%s.yaml'%conf)
     args['conf'] = conf
     # output_graphs(args)

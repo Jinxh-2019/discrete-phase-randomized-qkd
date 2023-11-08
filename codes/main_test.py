@@ -9,7 +9,7 @@ from codes.runs.graph import output_graphs
 from codes.utils.keyrate import keyrate
 # from root import ROOT_PATH
 if __name__ == '__main__':
-    conf = 'config_test'
+    conf = 'config_main'
     args = OmegaConf.load('./conf/%s.yaml'%conf)
     args['conf'] = conf
     args['mode'] = 'CP_Ma'

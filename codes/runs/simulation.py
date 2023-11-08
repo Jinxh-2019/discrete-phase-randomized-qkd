@@ -83,9 +83,9 @@ def simulator(if_optimize: bool, kwargs):
 def simulator_for_per_point(kwargs,l,xini,if_optimize):
     mode = kwargs['mode']
     if if_optimize:
-        if mode in {'DP','CPFK'}:
+        if mode in {'DP_Cao', 'DP','CPFK'}:
             x, b = global_optimize(kwargs, l=l, x=xini)
-        elif mode in {'DP_Cao', 'CP_Ma'}:
+        elif mode in {'CP_Ma'}:
             x, b = optimize(kwargs, l=l, x=xini)
         if x == []:
             print('optimize error')

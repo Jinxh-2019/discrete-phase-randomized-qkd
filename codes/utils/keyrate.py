@@ -413,7 +413,10 @@ def Y1_DP_Cao(p: parameters, kwargs):
     solution = linprog(c, A, b, A1, b1, bounds,
                        'highs-ds')
     Y = solution['x']
-    return Y[1]
+    if not Y is None:
+        return Y[1]
+    else:
+        return 0
 
 
 def e1Y1_DP_Cao(p: parameters, kwargs):
@@ -467,7 +470,10 @@ def e1Y1_DP_Cao(p: parameters, kwargs):
     solution = linprog(-c, A, b, A1, b1, bounds,
                        'highs-ds')
     Y = solution['x']
-    return Y[1]
+    if not Y is None:
+        return Y[1]
+    else:
+        return 1
 
 
 def Y1_CP_Ma(p: parameters):
@@ -508,9 +514,11 @@ def keyrate(x, l, kwargs):
     p = parameters(x, kwargs)
     if mode == 'DP_Cao':
         Y1 = Y1_DP_Cao(p, kwargs)
-        if Y1 == 0:
+        if Y1 <= 0 or Y1 >= 1:
             return -inf
         e1Y1 = e1Y1_DP_Cao(p,kwargs)
+        if e1Y1 >= Y1:
+            return -inf
         Δ = (1-p.Fj[1])/(2*Y1)
         if isreal(Δ):
             eb = e1Y1/Y1

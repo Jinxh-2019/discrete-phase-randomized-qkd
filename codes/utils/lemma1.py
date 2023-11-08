@@ -52,8 +52,8 @@ def Δ(P1, P2, F, n1, n2, kwargs):
         return Δ_lemmaA1_2(P1, P2, F, n1, n2, kwargs)
     elif lemma == 'lemmaA1_without_the_third_term':
         return Δ_lemmaA1_3(P1, P2, F, n1, n2, kwargs)
-    elif lemma == 'lemma_shan1':
-        return Δ1emma_shan1(P1, P2, F, n1, n2, kwargs)
+    elif lemma == 'lemma_Shan':
+        return Δ1emma_shan(P1, P2, F, n1, n2, kwargs)
     elif lemma == 'lemma_shan2':
         return Δ1emma_shan2(P1, P2, F, n1, n2, kwargs)
     elif lemma == 'F_test':
@@ -133,7 +133,7 @@ def Δ_lemmaA1_3(P1, P2, F, n1, n2, kwargs):
 #     return Δ
 
 
-def Δ1emma_shan1(P1, P2, F, n1, n2, kwargs):
+def Δ1emma_shan(P1, P2, F, n1, n2, kwargs):
     Ntot = kwargs['Ntot']
     ε0 = kwargs['ε0']
     ε1 = kwargs['ε1']
@@ -142,7 +142,7 @@ def Δ1emma_shan1(P1, P2, F, n1, n2, kwargs):
     _N2 = N2(P2, kwargs)
     if F > 1:
         F = 1
-    Δ = _N1*sqrt(1-F*F)/2 + _N1-_N2 + δ(P2/P1,n1,ε2)
+    Δ = Ntot*P2*sqrt(1-F*F)/2 + Ntot*P2-_N2 + δ(P2/P1,n1,ε2)
     
     #Δ = N1*sqrt(1-F*F)
     return Δ

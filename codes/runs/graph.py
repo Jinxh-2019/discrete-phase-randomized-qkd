@@ -26,12 +26,16 @@ discards = {'CP_Ma': {251,252,253,254,255,256,257,258,259,261,262,263,264,265,26
             }
 
 def graph_name(table_name):
-    name_dict = {'DP_Cao': 'Discrete Phase asymptotic',
-                    'CP_Ma': 'Continuous Phase asymptotic'}
+    name_dict = {'DP_Cao': 'Discrete Phase Randomize asymptotic',
+                    'CP_Ma': 'Continuous Randomize Phase asymptotic',
+                    'lemmaA1_DP10_12': 'Discrete Phase Randomize with Ntot=10^12',
+                    'lemmaA1_DP10_14': 'Discrete Phase Randomize with Ntot=10^14',
+                    'lemmaA1_DP10_20': 'Discrete Phase Randomize with Ntot=10^20',}
     if table_name in name_dict:
         return name_dict[table_name]
     else: return table_name
 def output_graphs(kwargs):
+    plt.figure(figsize=(10,8))
     cur, conn = connect(kwargs['conf'],kwargs)
     # test_items = generate_testitems(kwargs)
     cur.execute(
@@ -51,6 +55,6 @@ def output_graphs(kwargs):
     plt.xlabel('Distance (km)')
     plt.ylabel('Keyrate (bits/pulse)')
     plt.legend()
-    #plt.savefig('fig3.jpg',dpi=1200,figsize = (24,32))
+    #plt.savefig('fig3.jpg',dpi=1200)
     plt.show()
     print('end')
