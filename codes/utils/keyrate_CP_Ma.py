@@ -52,13 +52,3 @@ def keyrate(x,l,kwargs):
     else:
         return -inf
 
-
-# def Y1(x):
-#     μ = p.μ
-#     ν = p.ν
-#     Qμ = p.Qμ
-#     Qν = p.Qν
-#     Y0 = p.Q0
-
-#     Y1 = μ/(μ*ν-ν*ν)*(Qν*exp(ν) - Qμ*exp(μ)*(ν/μ)**2 - (μ**2-ν**2)/μ**2*Y0)
-#     return Y1
