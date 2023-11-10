@@ -136,14 +136,14 @@ def Δ_lemmaA1_3(P1, P2, F, n1, n2, kwargs):
 
 def Δ1emma_shan(P1, P2, F, n1, n2, kwargs):
     Ntot = kwargs['Ntot']
-    ε0 = kwargs['ε0']
-    ε1 = kwargs['ε1']
-    ε2 = kwargs['ε2']
+    ε0 = kwargs['ε0_A1']
+    ε1 = kwargs['ε1_A1']
+    ε2 = kwargs['ε2_A1']
     _N1 = N1(P2,ε1, kwargs)
     _N2 = N2(P2,ε1, kwargs)
     if F > 1:
         F = 1
-    Δ = Ntot*P2*sqrt(1-F*F)/2 + Ntot*P2-_N2 + δ_1(n1,P2/P1,ε2)
+    Δ = Ntot*P2*sqrt(1-F*F)/2 + δ_1(_N1, (1+sqrt(1-F*F))/2,ε0)-δ_1(_N2, (1+sqrt(1-F*F))/2,ε1) + δ_1(n1,P2/P1,ε2)
     
     #Δ = N1*sqrt(1-F*F)
     return Δ

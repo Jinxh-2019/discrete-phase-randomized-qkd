@@ -25,9 +25,9 @@ number_of_vector: 4
 cpstates: 8
 modes:
 #  - "CPFK"
- - "CP_Ma"
+#  - "CP_Ma"
  - "DP"
- - "DP_Cao"
+#  - "DP_Cao"
 
 number_of_Ntots: 4 
 logNtots:
@@ -36,6 +36,6 @@ logNtots:
  - 20
 
 lemmas: 
- - 'lemmaA1'
+#  - 'lemmaA1'
 #  - 'new_lemma'
-#  - 'lemma_shan'
+ - 'lemma_shan'

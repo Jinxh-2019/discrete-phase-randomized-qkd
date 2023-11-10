@@ -30,7 +30,11 @@ def graph_name(table_name):
                     'CP_Ma': 'Continuous Randomize Phase asymptotic',
                     'lemmaA1_DP10_12': 'Discrete Phase Randomize with Ntot=10^12',
                     'lemmaA1_DP10_14': 'Discrete Phase Randomize with Ntot=10^14',
-                    'lemmaA1_DP10_20': 'Discrete Phase Randomize with Ntot=10^20',}
+                    'lemmaA1_DP10_20': 'Discrete Phase Randomize with Ntot=10^20',
+                    'lemma_shan_DP10_20': 'Discrete Phase Randomize with Ntot=10^20,shan\'s method',
+                    'lemma_shan_DP10_14': 'Discrete Phase Randomize with Ntot=10^14,shan\'s method',
+                    'lemma_shan_DP10_12': 'Discrete Phase Randomize with Ntot=10^12,shan\'s method',
+                    }
     if table_name in name_dict:
         return name_dict[table_name]
     else: return table_name
@@ -43,7 +47,7 @@ def output_graphs(kwargs):
     table_names = cur.fetchall()
     for wrapped_table_name in table_names:
         table_name = wrapped_table_name[0]
-        if table_name in {}: continue
+        if not table_name in {'CP_Ma','DP_Cao','lemmaA1_DP10_20','lemmaA1_DP10_14','lemmaA1_DP10_12','lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
         if table_name in discards: discard = discards[table_name]
         else: discard = {}
         draw_single_line(
