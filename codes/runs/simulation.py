@@ -16,7 +16,7 @@ def generate_testitems(kwargs):
                 for logNtot in kwargs['logNtots']:
                     table_name = lemma_ver + '_' + mode + '10_%d' % logNtot
                     res.append((mode, table_name, logNtot,lemma_ver))
-        elif mode in {'CPFK'}:
+        elif mode in {'CPFK','decoy'}:
             for logNtot in kwargs['logNtots']:
                 table_name = mode + '10_%d' % logNtot
                 res.append((mode, table_name, logNtot))
@@ -38,7 +38,7 @@ def set_through_testitem(kwargs, testitem):
         kwargs['Ntot'] = 10**logNtot
         kwargs['mode_Ntot'] = mode + '10_%d' % logNtot
         kwargs['lemma'] = lemma_ver
-    elif mode in {'CPFK'}:
+    elif mode in {'CPFK','decoy'}:
         table_name = testitem[1]
         logNtot = testitem[2]
         table_name = mode +'10_%d' % logNtot
@@ -85,7 +85,7 @@ def simulator_for_per_point(kwargs,l,xini,if_optimize):
     if if_optimize:
         if mode in {'DP_Cao', 'DP','CPFK'}:
             x, b = global_optimize(kwargs, l=l, x=xini)
-        elif mode in {'CP_Ma'}:
+        elif mode in {'CP_Ma','decoy'}:
             x, b = optimize(kwargs, l=l, x=xini)
         if x == []:
             print('optimize error')

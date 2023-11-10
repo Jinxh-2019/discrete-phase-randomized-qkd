@@ -9,6 +9,7 @@ from numpy import exp, sqrt, log2, inf,absolute,isreal
 from math import factorial,isnan
 from scipy.optimize import linprog
 from codes.utils.keyrate_CP_Ma import keyrate as keyrate_CP_Ma
+from codes.utils.keyrate_decoy_Wang import keyrate as keyrate_decoy
 
 def refresh_l(l,kwargs):
     kwargs['Lgt'] = l
@@ -504,6 +505,8 @@ def keyrate(x, l, kwargs):
         return K.cal(x)
     elif kwargs['mode'] == 'CP_Ma':
         return keyrate_CP_Ma(x,l,kwargs)
+    elif kwargs['mode'] == 'decoy':
+        return keyrate_decoy(x,l,kwargs)
     bd = MyBounds()
     isleagal = bd(x_new=np.array(x))
     if not isleagal:

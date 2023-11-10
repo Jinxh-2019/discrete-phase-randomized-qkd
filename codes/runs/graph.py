@@ -47,7 +47,7 @@ def output_graphs(kwargs):
     table_names = cur.fetchall()
     for wrapped_table_name in table_names:
         table_name = wrapped_table_name[0]
-        if not table_name in {'CP_Ma','DP_Cao','lemmaA1_DP10_20','lemmaA1_DP10_14','lemmaA1_DP10_12','lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
+        if table_name in {'lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
         if table_name in discards: discard = discards[table_name]
         else: discard = {}
         draw_single_line(

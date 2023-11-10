@@ -26,16 +26,18 @@ cpstates: 8
 modes:
 #  - "CPFK"
 #  - "CP_Ma"
- - "DP"
+#  - "DP"
 #  - "DP_Cao"
+ - "decoy"
 
 number_of_Ntots: 4 
 logNtots:
- - 12
- - 14
+#  - 12
+#  - 14
  - 20
 
 lemmas: 
 #  - 'lemmaA1'
 #  - 'new_lemma'
- - 'lemma_shan'
+#  - 'lemma_shan'
+#  - 'decoy'

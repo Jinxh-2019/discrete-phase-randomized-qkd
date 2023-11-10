@@ -94,7 +94,7 @@ def put_initials(table_name, x):
     if(temp!=[]):
         cur.execute(
         " UPDATE initials SET x = ? WHERE table_name=?", (x_to_sql_x(x),table_name,))
-    else:
+    elif x!=[]:
         cur.execute(
         " INSERT INTO initials VALUES (?,?)", (table_name,x_to_sql_x(x),))
     conn.commit()
