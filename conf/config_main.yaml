@@ -20,7 +20,7 @@ logNtot: 14
 f: 1.1
 Q: 0.005
 mode: "CPFK"
-number_of_states: 4
+number_of_states: 2
 number_of_vector: 4
 cpstates: 8
 modes:
