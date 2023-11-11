@@ -3,9 +3,9 @@ from numpy import sqrt, exp, log2, inf, isnan
 from math import factorial
 from codes.utils.entropy import h
 from codes.utils.depack import depack_x
-from codes.utils.response_rate import Qeff, Qeffj, Qerr
-from probabilities import Pj_β
-from lemma1 import Δ
+from codes.utils.response_rate_discrete_phase_randomized import Qeff, Qeffj, Qerr
+from codes.utils.probabilities import Pj_β
+from codes.utils.lemma1 import Δ
 from scipy.optimize import linprog
 def refresh_l(l,kwargs):
     kwargs['Lgt'] = l
@@ -50,7 +50,6 @@ class parameters:
         Ntot = kwargs["Ntot"]
         mode = kwargs["mode"]
         number_of_states = kwargs["number_of_states"]
-        cpstates = kwargs["cpstates"]
         self.is_n1 = False
         self.x = x
         self.μ, self.ν, self.Pμ, self.Pz_μ, self.Pν, self.P0, self.Pz, self.Px = depack_x(
@@ -66,38 +65,37 @@ class parameters:
         self.nebitXν = Ntot*self.PaccXν*Qerr(self.ν,kwargs)
         self.neff0 = Ntot*self.P0*Qeff(0,kwargs)
         self.nerr0 = Ntot*self.P0*Qerr(0,kwargs)
-        if mode == 'DP':
-            self.PaccjXμ = np.zeros(N)
-            self.PaccjXν = np.zeros(N)
-            self.PaccjZμ = np.zeros(N)
-            self.PaccjZν = np.zeros(N)
-            self.Pjμ = np.zeros(N)
-            self.Pjν = np.zeros(N)
-            for j in range(N):
-                self.Pjμ[j] = Pj_β(j, self.μ,kwargs)
-                self.Pjν[j] = Pj_β(j, self.ν,kwargs)
-                self.PaccjXμ[j] = self.PaccXμ*self.Pjμ[j]
-                self.PaccjXν[j] = self.PaccXν*self.Pjν[j]
-                self.PaccjZμ[j] = self.PaccZμ*self.Pjμ[j]
-                self.PaccjZν[j] = self.PaccZν*self.Pjν[j]
-            # Fidelity
-            self.FjZμXν = np.zeros(N)
-            self.FjZμXμ = np.zeros(N)
-            for j in range(N):
-                self.FjZμXν[j] = exp(-(self.μ+self.ν)/2)/sqrt(self.Pjμ[j]*self.Pjν[j]) * sum(
-                    [(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)**1.5
-                        for l in range(number_of_states)])
-                self.FjZμXμ[j] = exp(-self.μ)/self.Pjμ[j]*sum(
-                    [self.μ**(l*N+j)/factorial(l*N+j)**1.5
-                        for l in range(number_of_states)])
-            self.Fjμ0 = sqrt(exp(-self.μ)/self.Pjμ[0])
-            self.Fjν0 = sqrt(exp(-self.ν)/self.Pjν[0])
-            self.FjXμXν = np.zeros(N)
-            for j in range(N):
-                self.FjXμXν[j] = exp(-(self.μ+self.ν)/2) / \
-                    sqrt(self.Pjμ[j]*self.Pjν[j])*sum([(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)
-                                                       for l in range(number_of_states)])
-            self.FjZμZν = self.FjXμXν
+        self.PaccjXμ = np.zeros(N)
+        self.PaccjXν = np.zeros(N)
+        self.PaccjZμ = np.zeros(N)
+        self.PaccjZν = np.zeros(N)
+        self.Pjμ = np.zeros(N)
+        self.Pjν = np.zeros(N)
+        for j in range(N):
+            self.Pjμ[j] = Pj_β(j, self.μ,kwargs)
+            self.Pjν[j] = Pj_β(j, self.ν,kwargs)
+            self.PaccjXμ[j] = self.PaccXμ*self.Pjμ[j]
+            self.PaccjXν[j] = self.PaccXν*self.Pjν[j]
+            self.PaccjZμ[j] = self.PaccZμ*self.Pjμ[j]
+            self.PaccjZν[j] = self.PaccZν*self.Pjν[j]
+        # Fidelity
+        self.FjZμXν = np.zeros(N)
+        self.FjZμXμ = np.zeros(N)
+        for j in range(N):
+            self.FjZμXν[j] = exp(-(self.μ+self.ν)/2)/sqrt(self.Pjμ[j]*self.Pjν[j]) * sum(
+                [(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)**1.5
+                    for l in range(number_of_states)])
+            self.FjZμXμ[j] = exp(-self.μ)/self.Pjμ[j]*sum(
+                [self.μ**(l*N+j)/factorial(l*N+j)**1.5
+                    for l in range(number_of_states)])
+        self.Fjμ0 = sqrt(exp(-self.μ)/self.Pjμ[0])
+        self.Fjν0 = sqrt(exp(-self.ν)/self.Pjν[0])
+        self.FjXμXν = np.zeros(N)
+        for j in range(N):
+            self.FjXμXν[j] = exp(-(self.μ+self.ν)/2) / \
+                sqrt(self.Pjμ[j]*self.Pjν[j])*sum([(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)
+                                                    for l in range(number_of_states)])
+        self.FjZμZν = self.FjXμXν
 
 def ebit(μ, kwargs):
     Qe = Qerr(μ, kwargs)
@@ -165,11 +163,7 @@ def n1(p: parameters, kwargs):
     if p.is_n1:
         return p.n1
     Ntot = kwargs["Ntot"]
-    mode = kwargs['mode']
-    if mode == 'DP':
-        N = kwargs['N']
-    elif mode == 'CP':
-        N = kwargs['cpstates']
+    N = kwargs['N']
     nov = N*2
     A = np.zeros([0, nov])
     b = np.zeros(0)
@@ -221,12 +215,8 @@ def n1(p: parameters, kwargs):
     return n1
 
 def neph1(p: parameters, kwargs):
-    mode = kwargs["mode"]
     Ntot = kwargs["Ntot"]
-    if mode == 'DP':
-        N = kwargs["N"]
-    elif mode == 'CP':
-        N = kwargs["cpstates"]
+    N = kwargs["N"]
     nov = N*2+1
     A = np.zeros([0, nov])
     b = np.zeros(0)

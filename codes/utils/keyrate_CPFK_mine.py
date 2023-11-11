@@ -3,9 +3,9 @@ from numpy import sqrt, exp, log2, inf, isnan
 from math import factorial
 from codes.utils.entropy import h
 from codes.utils.depack import depack_x
-from codes.utils.response_rate import Qeff, Qeffj, Qerr
-from probabilities import Pj_β
-from lemma1 import Δ
+from codes.utils.response_rate_continuouse_phase_randomized import Qeff, Qeffj, Qerr
+from codes.utils.probabilities import Pj_β
+from codes.utils.lemma1 import Δ
 from scipy.optimize import linprog
 def refresh_l(l,kwargs):
     kwargs['Lgt'] = l
@@ -148,10 +148,7 @@ def n1(p: parameters, kwargs):
         return p.n1
     Ntot = kwargs["Ntot"]
     mode = kwargs['mode']
-    if mode == 'DP':
-        N = kwargs['N']
-    elif mode == 'CP':
-        N = kwargs['cpstates']
+    N = kwargs['cpstates']
     nov = N*2
     A = np.zeros([0, nov])
     b = np.zeros(0)
@@ -203,12 +200,8 @@ def n1(p: parameters, kwargs):
     return n1
 
 def neph1(p: parameters, kwargs):
-    mode = kwargs["mode"]
     Ntot = kwargs["Ntot"]
-    if mode == 'DP':
-        N = kwargs["N"]
-    elif mode == 'CP':
-        N = kwargs["cpstates"]
+    N = kwargs["cpstates"]
     nov = N*2+1
     A = np.zeros([0, nov])
     b = np.zeros(0)

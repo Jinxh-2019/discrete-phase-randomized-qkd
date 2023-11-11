@@ -39,24 +39,16 @@ def Qcorrj(j, μ, kwargs):
     pdark = kwargs['pdark']
     η = kwargs['η']
     em = kwargs['em']
-    mode = kwargs['mode']
     N = kwargs['N']
-    if mode in {'DP','DP_Cao'}:
-        number_of_states = kwargs['number_of_states']
-        def f(l):
-            P = μ**(l*N+j)/factorial(l*N+j)
-            Q = ((1-η*em)**(l*N+j) - (1-η)**(l*N+j)) * \
-                (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
-            return P*Q
-        P1 = Pj_β(j, μ, kwargs)
-        res = exp(-μ)*sum([f(l) for l in range(number_of_states)])
-        return res/P1
-    elif mode in {'CP'}:
-        def f(l):
-            Q = ((1-η*em)**(l*N+j) - (1-η)**(l*N+j)) * \
-                (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
-            return Q
-        return f(j)
+    number_of_states = kwargs['number_of_states']
+    def f(l):
+        P = μ**(l*N+j)/factorial(l*N+j)
+        Q = ((1-η*em)**(l*N+j) - (1-η)**(l*N+j)) * \
+            (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
+        return P*Q
+    P1 = Pj_β(j, μ, kwargs)
+    res = exp(-μ)*sum([f(l) for l in range(number_of_states)])
+    return res/P1
 
 
 def Qerrj(j, μ, kwargs):  # 计算比特误码用到的函数,μ is float
@@ -65,30 +57,16 @@ def Qerrj(j, μ, kwargs):  # 计算比特误码用到的函数,μ is float
     pdark = kwargs['pdark']
     η = kwargs['η']
     em = kwargs['em']
-    mode = kwargs['mode']
     N = kwargs['N']
-
+    number_of_states = kwargs['number_of_states']
     def f(l):
         P = μ**(l*N+j)/factorial(l*N+j)
         Q = ((1-η*(1-em))**(l*N+j)-(1-η)**(l*N+j)) * \
             (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
         return P*Q
-    if mode in {'DP','DP_Cao'}:
-        number_of_states = kwargs['number_of_states']
-        def f(l):
-            P = μ**(l*N+j)/factorial(l*N+j)
-            Q = ((1-η*(1-em))**(l*N+j)-(1-η)**(l*N+j)) * \
-                (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
-            return P*Q
-        P1 = Pj_β(j, μ,kwargs)
-        res = exp(-μ)*sum([f(l) for l in range(number_of_states)])
-        return res/P1
-    elif mode in {'CP'}:
-        def f(l):
-            Q = ((1-η*(1-em))**(l*N+j)-(1-η)**(l*N+j)) * \
-                (1-pdark)+(1-η)**(l*N+j)*(1-pdark)*pdark
-            return Q
-        return f(j)
+    P1 = Pj_β(j, μ,kwargs)
+    res = exp(-μ)*sum([f(l) for l in range(number_of_states)])
+    return res/P1
 
 def Qeffj(j, μ, kwargs):
         return Qcorrj(j, μ, kwargs)+Qerrj(j, μ, kwargs)

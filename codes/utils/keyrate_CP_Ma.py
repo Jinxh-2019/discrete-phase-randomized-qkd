@@ -45,7 +45,7 @@ def keyrate(x,l,kwargs):
 
     e1 = (Eν*Qν*exp(ν)-e0*Y0)/(Y1Lν0*ν) #eq 37
     # Δ = ν/(μ-ν)*(ν*exp(-ν)*Qμ/(μ*exp(-μ)*Qν)-1)+ν*exp(-ν)*Y0/(μ*Qν)
-    q = 1
+    q = 1/2
     R = q*(-Qμ*f*H2(Eμ)+Q1*(1-H2(e1)))
     if isreal(R):
         return R

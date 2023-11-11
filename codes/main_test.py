@@ -7,15 +7,21 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from codes.runs.simulation import simulator
 from codes.runs.graph import output_graphs
 from codes.utils.keyrate import keyrate
-from codes.utils.keyrate_decoy_Wang import keyrate as keyrate_Wang
+from codes.utils.keyrate_decoy_Wang import keyrate as keyrate_decoy
+from codes.utils.keyrate_DPFK import keyrate as keyrate_DPFK
+from codes.utils.keyrate_CP_Ma import keyrate as keyrate_CP_Ma
+from codes.utils.keyrate_CPFK_mine import keyrate as keyrate_CPFK_mine
+from codes.utils.keyrate_DP_Cao import keyrate as keyrate_DP_Cao
+
 # from root import ROOT_PATH
 if __name__ == '__main__':
     conf = 'config_main'
     args = OmegaConf.load('./conf/%s.yaml'%conf)
     args['conf'] = conf
-    args['mode'] = 'decoy'
+    args['mode'] = 'CP'
     args['lemma'] = 'lemmaA1'
-    args['Ntot'] = 1e16
+    args['N'] = 8
+    args['Ntot'] = 1e20
     # output_graphs(args)
     # simulator(True, args)
     x = [0.660487544453102, 1e-05, 0.32833826346592443, 0.8941410211552083, 0.6761783356789675]
@@ -24,15 +30,25 @@ if __name__ == '__main__':
     # x =  [4.076347489223586e-06, 2.9444750131335518e-05, 0.3079141225269898, 0.998700379564296, 0.0008470767214430186]
     x = [0.6,0.2,1/3,0.5,0.5]
     # keyrate_Wang(x,175,args,ifdefault = True)
-    X = range(180,400)
-    p = [max([keyrate_Wang(x,l,args,ifdefault = False),0]) for l in X]
-    args['mode'] = 'DP'
+    X = range(0,300)
+    # p = [max([keyrate_Wang(x,l,args,ifdefault = False),0]) for l in X]
+    # args['mode'] = 'DP'
     # args['Ntot'] = 1e16
-    q = [max([keyrate(x,l,args),0]) for l in X]
-    
     import matplotlib.pyplot as plt
-    plt.semilogy(X,p,label = 'decoy')
-    plt.semilogy(X,q,label = 'DP')
+    q = [max([keyrate_DP_Cao(x,l,args),0]) for l in X]
+    plt.semilogy(X,q,label = 'DP_Cao')
+    q = [max([keyrate_CPFK_mine(x,l,args),0]) for l in X]
+    plt.semilogy(X,q,label = 'CPFK_mine')
+    q = [max([keyrate_CP_Ma(x,l,args),0]) for l in X]
+    plt.semilogy(X,q,label = 'CP_Ma')
+    q = [max([keyrate_decoy(x,l,args),0]) for l in X]
+    plt.semilogy(X,q,label = 'decoy')
+    q = [max([keyrate_DPFK(x,l,args),0]) for l in X]
+    plt.semilogy(X,q,label = 'DPFK')
+    
+    
+    # plt.semilogy(X,p,label = 'decoy')
+    # plt.semilogy(X,q)
     plt.legend()
     plt.show()
     # print(p)

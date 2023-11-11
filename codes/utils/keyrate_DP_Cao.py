@@ -1,6 +1,6 @@
 import numpy as np
 from numpy import sqrt, exp, inf, isreal, absolute
-from codes.utils.response_rate import Qeff, Qeffj, Qerr
+from codes.utils.response_rate_discrete_phase_randomized import Qeff, Qeffj, Qerr
 from math import factorial
 # from probabilities import Pj_β
 from codes.utils.entropy import h

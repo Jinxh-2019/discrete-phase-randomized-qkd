@@ -19,9 +19,14 @@ II = int(2)
 f_EC = 1.1
 Ntot = 1e12
 # Q = (1-V)/2
-
-
-class keyrate:
+def refresh_l(l,kwargs):
+    kwargs['Lgt'] = l
+    kwargs['η'] = kwargs['ηd']*10**(-kwargs['ξ']*l/10)
+def keyrate(x,l,kwargs):
+    refresh_l(l,kwargs)
+    k = keyrate1(kwargs)
+    return k.cal(x)
+class keyrate1:
     def __init__(self, kwargs):
         global ε_PE, η, em, pdark, ε_PA, ε_EC, f_EC, Ntot, Q, t
         ε_PE = 1e-10

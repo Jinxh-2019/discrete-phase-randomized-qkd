@@ -1,5 +1,5 @@
 def depack_x(x, mode):
-    if mode in {"CP_Ma", "DP", "DP_Cao","CPFK"}:
+    if mode not in {}:
         μ = x[0]
         ν = x[1]
         Pμ = x[2]
