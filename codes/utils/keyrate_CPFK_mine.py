@@ -7,6 +7,7 @@ from codes.utils.response_rate_continuouse_phase_randomized import Qeff, Qeffj, 
 from codes.utils.probabilities import Pj_β
 from codes.utils.lemma1 import Δ
 from scipy.optimize import linprog
+from decimal import Decimal, getcontext, localcontext
 def refresh_l(l,kwargs):
     kwargs['Lgt'] = l
     kwargs['η'] = kwargs['ηd']*10**(-kwargs['ξ']*l/10)
@@ -49,7 +50,7 @@ class parameters:
         N = kwargs["N"]
         Ntot = kwargs["Ntot"]
         mode = kwargs["mode"]
-        number_of_states = kwargs["number_of_states"]
+        # number_of_states = kwargs["number_of_states"]
         cpstates = kwargs["cpstates"]
         self.is_n1 = False
         self.x = x
@@ -74,12 +75,14 @@ class parameters:
         self.PaccjXν = self.PaccXν*self.Pjν
         self.PaccjZμ = self.PaccZμ*self.Pjμ
         self.PaccjZν = self.PaccZν*self.Pjν
-        self.FjZμXν = np.ones(2)
-        self.FjZμXμ = np.ones(2)
-        self.FjXμXν = np.ones(cpstates)
-        self.Fjμ0 = 1
-        self.Fjν0 = 1
-        self.FjZμZν = np.ones(cpstates)
+        with localcontext() as ctx:
+            ctx.prec = 100
+            self.FjZμXν = [Decimal('1')]*2
+            self.FjZμXμ = [Decimal('1')]*2
+            self.FjXμXν = [Decimal('1')]*cpstates
+            self.Fjμ0 = Decimal('1')
+            self.Fjν0 = Decimal('1')
+            self.FjZμZν = [Decimal('1')]*cpstates
 
 def ebit(μ, kwargs):
     Qe = Qerr(μ, kwargs)

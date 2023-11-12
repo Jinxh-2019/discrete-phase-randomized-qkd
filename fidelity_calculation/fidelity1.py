@@ -39,5 +39,9 @@ for N in range(2,32,2):
                 for l in range(number_of_states)])
         FjXμXν[j] = Decimal('1')-FjXμXν[j]
     Y.append(FjXμXν[0])
+plt.figure(figsize=(6,4))
 plt.semilogy(range(2,32,2), Y)
-plt.show()
+plt.xlabel('Number of Randomized Discrete Phases: N')
+plt.ylabel('Difference between μ and ν on state j=0: 1-F')
+plt.savefig('fig_fidelity1.jpg',dpi=600)
+# plt.show()

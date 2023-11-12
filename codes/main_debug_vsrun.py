@@ -11,7 +11,7 @@ if __name__ == '__main__':
     conf = 'config_main'
     args = OmegaConf.load('./conf/%s.yaml'%conf)
     args['conf'] = conf
-    output_graphs(args)
+    # output_graphs(args)
     
-    # simulator(True, args)
+    simulator(True, args)
 

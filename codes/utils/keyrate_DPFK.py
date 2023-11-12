@@ -6,7 +6,9 @@ from codes.utils.depack import depack_x
 from codes.utils.response_rate_discrete_phase_randomized import Qeff, Qeffj, Qerr
 from codes.utils.probabilities import Pj_β
 from codes.utils.lemma1 import Δ
+from codes.utils.fidelity import fidelity
 from scipy.optimize import linprog
+from decimal import Decimal, getcontext, localcontext
 def refresh_l(l,kwargs):
     kwargs['Lgt'] = l
     kwargs['η'] = kwargs['ηd']*10**(-kwargs['ξ']*l/10)
@@ -79,23 +81,16 @@ class parameters:
             self.PaccjZμ[j] = self.PaccZμ*self.Pjμ[j]
             self.PaccjZν[j] = self.PaccZν*self.Pjν[j]
         # Fidelity
-        self.FjZμXν = np.zeros(N)
-        self.FjZμXμ = np.zeros(N)
-        for j in range(N):
-            self.FjZμXν[j] = exp(-(self.μ+self.ν)/2)/sqrt(self.Pjμ[j]*self.Pjν[j]) * sum(
-                [(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)**1.5
-                    for l in range(number_of_states)])
-            self.FjZμXμ[j] = exp(-self.μ)/self.Pjμ[j]*sum(
-                [self.μ**(l*N+j)/factorial(l*N+j)**1.5
-                    for l in range(number_of_states)])
-        self.Fjμ0 = sqrt(exp(-self.μ)/self.Pjμ[0])
-        self.Fjν0 = sqrt(exp(-self.ν)/self.Pjν[0])
-        self.FjXμXν = np.zeros(N)
-        for j in range(N):
-            self.FjXμXν[j] = exp(-(self.μ+self.ν)/2) / \
-                sqrt(self.Pjμ[j]*self.Pjν[j])*sum([(self.μ*self.ν)**((l*N+j)/2)/factorial(l*N+j)
-                                                    for l in range(number_of_states)])
-        self.FjZμZν = self.FjXμXν
+        with localcontext() as ctx:  # Use local context to avoid affecting global precision
+            ctx.prec = 100
+            f1 = fidelity(Decimal(self.μ), Decimal(self.ν), kwargs)
+            f2 = fidelity(Decimal(self.μ), Decimal(self.μ), kwargs)
+            self.FjZμXν = f1.FjZμXν
+            self.FjZμXμ = f2.FjZμXν
+            self.Fjμ0 = (Decimal(-self.μ).exp()/Decimal(self.Pjμ[0])).sqrt()
+            self.Fjν0 = (Decimal(-self.ν).exp()/Decimal(self.Pjν[0])).sqrt()
+            self.FjXμXν = f1.FjXμXν
+            self.FjZμZν = self.FjXμXν
 
 def ebit(μ, kwargs):
     Qe = Qerr(μ, kwargs)

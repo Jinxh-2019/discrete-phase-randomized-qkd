@@ -32,7 +32,7 @@ def keyrate(x,l,kwargs):
 
     # PRA.72.012326 X.F.Ma eq(3)
     Qμ = Y0+1-exp(-η*μ)
-    Qν = Y0+1-exp(-η*μ)
+    Qν = Y0+1-exp(-η*ν)
     e0 = 1/2
     edet = kwargs["em"]
     Eμ = ((e0*Y0)+edet*(1-exp(-η*μ)))/Qμ #eq 11
@@ -45,7 +45,7 @@ def keyrate(x,l,kwargs):
 
     e1 = (Eν*Qν*exp(ν)-e0*Y0)/(Y1Lν0*ν) #eq 37
     # Δ = ν/(μ-ν)*(ν*exp(-ν)*Qμ/(μ*exp(-μ)*Qν)-1)+ν*exp(-ν)*Y0/(μ*Qν)
-    q = 1/2
+    q = Pμ**2
     R = q*(-Qμ*f*H2(Eμ)+Q1*(1-H2(e1)))
     if isreal(R):
         return R
