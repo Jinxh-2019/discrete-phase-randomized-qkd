@@ -1,8 +1,19 @@
 from codes.utils.sampling import sampling
 from scipy.optimize import minimize, differential_evolution
-from codes.utils.keyrate import keyrate, MyBounds
+from codes.utils.keyrate import keyrate
+import numpy as np
 
+class MyBounds:
+    def __init__(self, xmax=[1-1e-14, 1-1e-14, 1-1e-14, 1-1e-14, 1-1e-14], xmin=[1e-14, 1e-14, 1e-14, 1e-14, 1e-14]):
+        self.xmax = np.array(xmax)
+        self.xmin = np.array(xmin)
 
+    def __call__(self, x_new):
+        x = x_new
+        tmax = bool(np.all(x <= self.xmax))
+        tmin = bool(np.all(x >= self.xmin))
+        return tmax and tmin
+    
 def optimize(kwargs, l=0,x=[],maxit = 100):
     if x != []:
         pass

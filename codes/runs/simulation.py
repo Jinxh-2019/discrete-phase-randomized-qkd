@@ -107,10 +107,12 @@ def simulator_for_per_testitem(cur: Cursor, table_name, if_optimize, kwargs, sta
         kwargs['Lgt'] = l
         x,key_rate = simulator_for_per_point(kwargs,l,last_eff_x,if_optimize)
         if x != []:
-            last_eff_x = x
+            pass
         else:
             continue
         if key_rate >= 0:
+            last_eff_x2 = last_eff_x 
+            last_eff_x = x
             last_eff_l = l
             write_records(cur, x, l, key_rate, table_name)
             print(table_name, l, key_rate, '\n', x)
@@ -122,7 +124,7 @@ def simulator_for_per_testitem(cur: Cursor, table_name, if_optimize, kwargs, sta
     
     for l in range(last_eff_l-10,last_eff_l+10):
         kwargs['Lgt'] = l
-        x,key_rate = simulator_for_per_point(kwargs,l,last_eff_x,if_optimize)
+        x,key_rate = simulator_for_per_point(kwargs,l,last_eff_x2,if_optimize)
         if x != []:
             last_eff_x = x
         else:

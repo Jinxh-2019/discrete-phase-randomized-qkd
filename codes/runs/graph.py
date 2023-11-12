@@ -19,10 +19,15 @@ def draw_single_line(cur: Cursor, table_name, label, discard={}):
     for j in range(len(discard_list)-1,-1,-1):
         del X[discard_list[j]]
         del Y[discard_list[j]]
-    plt.semilogy(X, Y, label=label)
+    if table_name == 'CP_Ma':
+        plt.semilogy(X, Y, label=label,linestyle='--')
+    elif table_name == 'DP_Cao':
+        plt.semilogy(X, Y, label=label,linestyle='-.')
+    else:
+        plt.semilogy(X, Y, label=label)
 
 
-discards = {'CP_Ma': {251,252,253,254,255,256,257,258,259,261,262,263,264,265,266,267,268,269}
+discards = {'lemmaA1_DP10_20': {20,30,40,50,60,70,80,90}
             }
 
 def graph_name(table_name):
@@ -47,7 +52,7 @@ def output_graphs(kwargs):
     table_names = cur.fetchall()
     for wrapped_table_name in table_names:
         table_name = wrapped_table_name[0]
-        if table_name in {'lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
+        if table_name in {'decoy10_12','decoy10_14','decoy10_20','lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
         if table_name in discards: discard = discards[table_name]
         else: discard = {}
         draw_single_line(
@@ -60,6 +65,6 @@ def output_graphs(kwargs):
     plt.xlabel('Distance (km)')
     plt.ylabel('Keyrate (bits/pulse)')
     plt.legend()
-    #plt.savefig('fig3.jpg',dpi=1200)
-    plt.show()
+    plt.savefig('fig3.eps',dpi=1200)
+    # plt.show()
     print('end')

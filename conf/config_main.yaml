@@ -34,7 +34,7 @@ number_of_Ntots: 4
 logNtots:
 #  - 12
 #  - 14
- - 20
+#  - 20
 
 lemmas: 
 #  - 'lemmaA1'
