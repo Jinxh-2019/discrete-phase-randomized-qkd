@@ -24,7 +24,7 @@ for N in range(2,32,2):
     μ = Decimal('0.5')
     # ν = Decimal('0.005')
     F = sum([sum([((-μ).exp()*μ**(l*N+j)/factorial(l*N+j))**Decimal('2') for l in range(number_of_states)]).sqrt() for j in range(N)])
-    Y.append((Decimal(1)-F))
+    Y.append((Decimal(1)-F**Decimal('2')).sqrt())
 plt.figure(figsize=(6,4))
 plt.semilogy(range(2,32,2), Y)
 plt.xlabel('Number of Randomized Discrete Phases: N')
