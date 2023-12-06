@@ -52,15 +52,15 @@ def output_graphs(kwargs):
     table_names = cur.fetchall()
     for wrapped_table_name in table_names:
         table_name = wrapped_table_name[0]
-        if table_name in {'decoy10_12','decoy10_14','decoy10_20','lemma_shan_DP10_12','lemma_shan_DP10_14','lemma_shan_DP10_20'}: continue
+        if not table_name in {'CP_Ma','DP_Cao','lemmaA1_DP10_12','lemmaA1_DP10_14','lemmaA1_DP10_20'}: continue
         if table_name in discards: discard = discards[table_name]
         else: discard = {}
         draw_single_line(
             cur, table_name, graph_name(table_name), discard)
     conn.close()
-    X = np.array(range(320))
-    Y = 0.3*10**(-X*0.2/10)
-    plt.semilogy(X, Y, label='PLOB linear bound')
+    # X = np.array(range(320))
+    # Y = 0.3*10**(-X*0.2/10)
+    # plt.semilogy(X, Y, label='PLOB linear bound')
 
     plt.xlabel('Distance (km)')
     plt.ylabel('Keyrate (bits/pulse)')
